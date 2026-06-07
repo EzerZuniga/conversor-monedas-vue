@@ -17,6 +17,30 @@ const routes = [
       title: 'Acerca del proyecto',
     },
   },
+  {
+    path: '/ayuda',
+    name: 'help',
+    component: () => import('@/views/HelpView.vue'),
+    meta: {
+      title: 'Ayuda',
+    },
+  },
+  {
+    path: '/privacidad',
+    name: 'privacy',
+    component: () => import('@/views/PrivacyView.vue'),
+    meta: {
+      title: 'Politica de privacidad',
+    },
+  },
+  {
+    path: '/terminos',
+    name: 'terms',
+    component: () => import('@/views/TermsView.vue'),
+    meta: {
+      title: 'Terminos y condiciones',
+    },
+  },
 ]
 
 const router = createRouter({

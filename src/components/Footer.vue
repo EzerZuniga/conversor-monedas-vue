@@ -1,3 +1,14 @@
+<script setup>
+const footerLinks = [
+  { label: 'Proyecto', to: '/about' },
+  { label: 'Ayuda', to: '/ayuda' },
+  { label: 'Privacidad', to: '/privacidad' },
+  { label: 'Terminos', to: '/terminos' },
+]
+
+const technologies = ['Vue 3', 'Vite', 'Pinia', 'Vue Router']
+</script>
+
 <template>
   <footer class="app-footer">
     <div class="app-footer__brand">
@@ -6,11 +17,29 @@
       <small>© 2026 Conversor de Monedas PUCP. Todos los derechos reservados.</small>
     </div>
 
-    <div class="app-footer__meta">
-      <span>Vue 3</span>
-      <span>Vite</span>
-      <span>Pinia</span>
-      <span>Vue Router</span>
+    <nav
+      class="app-footer__links"
+      aria-label="Enlaces secundarios"
+    >
+      <RouterLink
+        v-for="link in footerLinks"
+        :key="link.to"
+        :to="link.to"
+      >
+        {{ link.label }}
+      </RouterLink>
+    </nav>
+
+    <div
+      class="app-footer__meta"
+      aria-label="Tecnologias usadas"
+    >
+      <span
+        v-for="technology in technologies"
+        :key="technology"
+      >
+        {{ technology }}
+      </span>
     </div>
   </footer>
 </template>

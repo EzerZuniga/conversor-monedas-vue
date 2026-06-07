@@ -47,7 +47,10 @@ const handleSubmit = () => {
       <HeroCarousel />
     </section>
 
-    <section id="convertidor" class="content-grid">
+    <section
+      id="convertidor"
+      class="content-grid"
+    >
       <CurrencyConverter
         v-model="formState"
         :currencies="currencies"
@@ -61,7 +64,11 @@ const handleSubmit = () => {
         @swap="swapCurrencies"
       />
 
-      <ConversionHistory id="historial" :history="history" @clear="clearHistory" />
+      <ConversionHistory
+        id="historial"
+        :history="history"
+        @clear="clearHistory"
+      />
     </section>
   </section>
 </template>

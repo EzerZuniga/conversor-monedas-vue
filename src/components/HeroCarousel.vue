@@ -88,7 +88,10 @@ onBeforeUnmount(stopAutoplay)
     @focusin="isPaused = true"
     @focusout="isPaused = false"
   >
-    <div class="hero-carousel__viewport" aria-live="polite">
+    <div
+      class="hero-carousel__viewport"
+      aria-live="polite"
+    >
       <article
         :key="activeIndex"
         class="hero-carousel__slide"
@@ -99,7 +102,10 @@ onBeforeUnmount(stopAutoplay)
           <p>{{ activeSlide.description }}</p>
         </div>
 
-        <div class="hero-carousel__benefits" aria-label="Beneficios principales">
+        <div
+          class="hero-carousel__benefits"
+          aria-label="Beneficios principales"
+        >
           <span
             v-for="benefit in benefits"
             :key="benefit"
@@ -108,14 +114,20 @@ onBeforeUnmount(stopAutoplay)
           </span>
         </div>
 
-        <div class="hero-carousel__actions" aria-label="Acciones principales">
+        <div
+          class="hero-carousel__actions"
+          aria-label="Acciones principales"
+        >
           <a href="#convertidor">{{ activeSlide.primaryOption }}</a>
           <a href="#historial">{{ activeSlide.secondaryOption }}</a>
         </div>
       </article>
     </div>
 
-    <div class="hero-carousel__controls" aria-label="Controles del carrusel">
+    <div
+      class="hero-carousel__controls"
+      aria-label="Controles del carrusel"
+    >
       <button
         class="hero-carousel__arrow"
         type="button"
