@@ -89,8 +89,6 @@ La aplicación usa tasas de cambio locales de respaldo dentro de `src/services/e
 | `VITE_EXCHANGE_API_URL` | URL base del proveedor de tipos de cambio. |
 | `VITE_EXCHANGE_API_KEY` | Clave pública o token del proveedor, si aplica. |
 
-Nunca subas claves reales al repositorio. En producción, configura estos valores desde el panel del proveedor de hosting.
-
 ## Scripts disponibles
 
 | Script | Descripción |
@@ -144,38 +142,7 @@ Buenas prácticas aplicadas:
 - Manejo de estado de carga y mensajes de error.
 - Rutas con carga diferida para reducir el JavaScript inicial.
 - Metadatos básicos, manifest, favicons y configuración SPA para Netlify.
-- Enlaces secundarios para ayuda, privacidad y términos.
-
-## Despliegue en Netlify
-
-Configuración recomendada:
-
-| Campo | Valor |
-| --- | --- |
-| Framework | Vue / Vite |
-| Branch | `main` |
-| Build command | `npm run build` |
-| Publish directory | `dist` |
-| Environment variables | No obligatorias actualmente |
-
-El archivo `public/_redirects` permite que Netlify resuelva correctamente rutas internas como:
-
-```text
-/about
-/ayuda
-/privacidad
-/terminos
-```
-
-Después del despliegue, revisa:
-
-- Carga inicial de la página principal.
-- Navegación entre rutas.
-- Recarga directa de rutas internas.
-- Funcionamiento del formulario de conversión.
-- Visualización del historial.
-- Footer y enlaces legales.
-- Vista responsive en móvil y escritorio.
+- Enlaces secundarios para ayuda, privacidad y términos. 
 
 ## Mejoras futuras
 
