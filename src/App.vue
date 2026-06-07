@@ -1,42 +1,23 @@
 <script setup>
-const navigationLinks = [
-  { name: 'Conversor', path: '/' },
-  { name: 'Acerca de', path: '/about' },
-]
+import AppFooter from '@/components/Footer.vue'
+import AppHeader from '@/components/AppHeader.vue'
 </script>
 
 <template>
   <div class="app-shell">
-    <header class="site-header">
-      <RouterLink
-        class="brand"
-        to="/"
-        aria-label="Ir al conversor de monedas"
-      >
-        <span class="brand__mark">S/</span>
-        <span>
-          <strong>Conversor PUCP</strong>
-          <small>Vue 3 + Vite</small>
-        </span>
-      </RouterLink>
-
-      <nav
-        class="main-nav"
-        aria-label="Navegacion principal"
-      >
-        <RouterLink
-          v-for="link in navigationLinks"
-          :key="link.path"
-          class="main-nav__link"
-          :to="link.path"
-        >
-          {{ link.name }}
-        </RouterLink>
-      </nav>
-    </header>
+    <AppHeader />
 
     <main class="page-container">
-      <RouterView />
+      <RouterView v-slot="{ Component }">
+        <Transition
+          name="page-fade"
+          mode="out-in"
+        >
+          <component :is="Component" />
+        </Transition>
+      </RouterView>
     </main>
+
+    <AppFooter />
   </div>
 </template>

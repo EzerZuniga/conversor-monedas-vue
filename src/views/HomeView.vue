@@ -2,8 +2,8 @@
 import { computed } from 'vue'
 
 import ConversionHistory from '@/components/ConversionHistory.vue'
-import CurrencyForm from '@/components/CurrencyForm.vue'
-import CurrencyResult from '@/components/CurrencyResult.vue'
+import CurrencyConverter from '@/components/CurrencyConverter.vue'
+import HeroCarousel from '@/components/HeroCarousel.vue'
 import { useCurrencyConverter } from '@/composables/useCurrencyConverter'
 
 const {
@@ -17,6 +17,7 @@ const {
   errorMessage,
   formattedLastUpdatedAt,
   canConvert,
+  amountError,
   convertCurrency,
   swapCurrencies,
   clearHistory,
@@ -41,50 +42,26 @@ const handleSubmit = () => {
 </script>
 
 <template>
-  <section class="home-layout">
-    <div class="hero-copy">
-      <span class="eyebrow">PUCP - Desarrollo Frontend con Vue 3</span>
-      <h1>Conversor de monedas escalable y preparado para API real</h1>
-      <p>
-        Proyecto academico construido con Composition API, Vue Router, Pinia y una capa de servicios
-        aislada para integrar tipos de cambio en tiempo real.
-      </p>
-    </div>
+  <section class="home-view">
+    <section class="hero">
+      <HeroCarousel />
+    </section>
 
-    <div class="workspace-grid">
-      <section class="converter-card">
-        <div class="section-heading">
-          <div>
-            <span class="eyebrow">Operacion</span>
-            <h2>Nueva conversion</h2>
-          </div>
-          <span class="sync-label">Actualizado: {{ formattedLastUpdatedAt }}</span>
-        </div>
+    <section id="convertidor" class="content-grid">
+      <CurrencyConverter
+        v-model="formState"
+        :currencies="currencies"
+        :result="result"
+        :is-loading="isLoading"
+        :can-convert="canConvert"
+        :amount-error="amountError"
+        :error-message="errorMessage"
+        :last-updated-at="formattedLastUpdatedAt"
+        @submit="handleSubmit"
+        @swap="swapCurrencies"
+      />
 
-        <p
-          v-if="errorMessage"
-          class="alert"
-          role="alert"
-        >
-          {{ errorMessage }}
-        </p>
-
-        <CurrencyForm
-          v-model="formState"
-          :currencies="currencies"
-          :is-loading="isLoading"
-          :can-convert="canConvert"
-          @submit="handleSubmit"
-          @swap="swapCurrencies"
-        />
-      </section>
-
-      <CurrencyResult :result="result" />
-    </div>
-
-    <ConversionHistory
-      :history="history"
-      @clear="clearHistory"
-    />
+      <ConversionHistory id="historial" :history="history" @clear="clearHistory" />
+    </section>
   </section>
 </template>

@@ -10,17 +10,17 @@ const FALLBACK_RATES = Object.freeze({
 const SUPPORTED_CURRENCIES = Object.freeze([
   { code: 'PEN', name: 'Sol peruano', symbol: 'S/' },
   { code: 'USD', name: 'Dolar estadounidense', symbol: '$' },
-  { code: 'EUR', name: 'Euro', symbol: 'EUR' },
-  { code: 'GBP', name: 'Libra esterlina', symbol: 'GBP' },
-  { code: 'JPY', name: 'Yen japones', symbol: 'JPY' },
+  { code: 'EUR', name: 'Euro', symbol: '€' },
+  { code: 'GBP', name: 'Libra esterlina', symbol: '£' },
+  { code: 'JPY', name: 'Yen japones', symbol: '¥' },
   { code: 'BRL', name: 'Real brasileno', symbol: 'R$' },
 ])
 
 const simulateNetworkLatency = () => new Promise((resolve) => setTimeout(resolve, 250))
 
 /**
- * Servicio responsable de obtener tasas de cambio.
- * La vista no conoce si los datos vienen de memoria, localStorage o una API HTTP.
+ * Punto unico para obtener tasas de cambio.
+ * Luego puede reemplazarse por fetch/axios sin tocar componentes.
  */
 export async function getExchangeRates() {
   await simulateNetworkLatency()
@@ -48,4 +48,13 @@ export function calculateConversion({ amount, fromCurrency, toCurrency, rates })
   const convertedAmount = amountInBaseCurrency * targetRate
 
   return Number(convertedAmount.toFixed(2))
+}
+
+export function calculateExchangeRate({ fromCurrency, toCurrency, rates }) {
+  return calculateConversion({
+    amount: 1,
+    fromCurrency,
+    toCurrency,
+    rates,
+  })
 }

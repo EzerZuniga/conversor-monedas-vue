@@ -17,8 +17,14 @@ export function useCurrencyConverter() {
     formattedLastUpdatedAt,
   } = storeToRefs(currencyStore)
 
+  const amountError = computed(() => {
+    if (!amount.value) return 'Ingresa un monto.'
+    if (Number(amount.value) <= 0) return 'El monto debe ser mayor a cero.'
+
+    return ''
+  })
   const canConvert = computed(
-    () => Number(amount.value) > 0 && fromCurrency.value !== toCurrency.value,
+    () => !amountError.value && fromCurrency.value !== toCurrency.value && !isLoading.value,
   )
 
   onMounted(() => {
@@ -36,6 +42,7 @@ export function useCurrencyConverter() {
     errorMessage,
     formattedLastUpdatedAt,
     canConvert,
+    amountError,
     convertCurrency: currencyStore.convertCurrency,
     swapCurrencies: currencyStore.swapCurrencies,
     clearHistory: currencyStore.clearHistory,

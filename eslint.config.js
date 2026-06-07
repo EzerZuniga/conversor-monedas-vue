@@ -19,6 +19,7 @@ export default [
         crypto: 'readonly',
         setTimeout: 'readonly',
         Intl: 'readonly',
+        localStorage: 'readonly',
       },
     },
     rules: {

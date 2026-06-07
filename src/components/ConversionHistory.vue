@@ -18,11 +18,11 @@ const formatDate = (value) =>
 </script>
 
 <template>
-  <section class="history-panel">
-    <div class="section-heading">
+  <aside class="history-card">
+    <div class="card-header">
       <div>
-        <span class="eyebrow">Actividad reciente</span>
-        <h2>Historial</h2>
+        <span class="eyebrow">Historial</span>
+        <h2>Recientes</h2>
       </div>
 
       <BaseButton
@@ -41,10 +41,9 @@ const formatDate = (value) =>
       <li
         v-for="item in history"
         :key="item.id"
-        class="history-item"
       >
-        <span>{{ item.amount }} {{ item.fromCurrency }} → {{ item.convertedAmount }}
-          {{ item.toCurrency }}</span>
+        <strong>{{ item.amount }} {{ item.fromCurrency }}</strong>
+        <span>{{ item.convertedAmount }} {{ item.toCurrency }}</span>
         <time :datetime="item.createdAt">{{ formatDate(item.createdAt) }}</time>
       </li>
     </ul>
@@ -53,7 +52,7 @@ const formatDate = (value) =>
       v-else
       class="empty-state"
     >
-      Aun no hay conversiones registradas.
+      Aun no hay conversiones. Tu historial aparecera aqui.
     </p>
-  </section>
+  </aside>
 </template>

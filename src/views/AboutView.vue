@@ -1,29 +1,25 @@
 <template>
-  <section class="about-layout">
-    <div>
-      <span class="eyebrow">Arquitectura frontend</span>
-      <h1>Proyecto academico profesional</h1>
-      <p>
-        Esta aplicacion separa responsabilidades por capas: vistas para composicion de pantalla,
-        componentes para UI reutilizable, Pinia para estado global, composables para logica de caso
-        de uso y servicios para acceso a datos.
-      </p>
-    </div>
+  <section class="about-view">
+    <span class="eyebrow">Acerca del proyecto</span>
+    <h1>Aplicacion academica con enfoque profesional</h1>
+    <p>
+      Este convertidor de monedas fue construido con Vue 3, Vite, Pinia y Vue Router. La interfaz
+      usa una identidad visual inspirada en PUCP, prioriza legibilidad, accesibilidad y una
+      experiencia responsiva para celulares, tablets y escritorio.
+    </p>
 
-    <div class="principles-grid">
+    <div class="about-grid">
       <article>
-        <h2>Composition API</h2>
-        <p>
-          Permite organizar logica reactiva por funcionalidad y reutilizarla sin acoplar vistas.
-        </p>
+        <h2>Simple</h2>
+        <p>Una tarea principal: convertir monedas sin distracciones.</p>
       </article>
       <article>
-        <h2>Pinia</h2>
-        <p>Centraliza el estado compartido del conversor y mantiene acciones predecibles.</p>
+        <h2>Escalable</h2>
+        <p>La logica de tasas esta separada para conectar una API real despues.</p>
       </article>
       <article>
-        <h2>Capa de servicios</h2>
-        <p>Prepara la futura integracion HTTP sin modificar componentes ni vistas.</p>
+        <h2>Responsiva</h2>
+        <p>El layout se adapta desde pantallas pequenas hasta escritorio.</p>
       </article>
     </div>
   </section>

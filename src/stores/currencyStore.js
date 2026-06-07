@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 
 import {
   calculateConversion,
+  calculateExchangeRate,
   getExchangeRates,
   getSupportedCurrencies,
 } from '@/services/exchangeService'
@@ -22,7 +23,7 @@ export const useCurrencyStore = defineStore('currency', {
 
   getters: {
     formattedLastUpdatedAt: (state) => {
-      if (!state.lastUpdatedAt) return 'Pendiente de sincronizacion'
+      if (!state.lastUpdatedAt) return 'Pendiente'
 
       return new Intl.DateTimeFormat('es-PE', {
         dateStyle: 'medium',
@@ -49,6 +50,7 @@ export const useCurrencyStore = defineStore('currency', {
     },
 
     async convertCurrency(payload) {
+      this.errorMessage = ''
       this.amount = Number(payload.amount)
       this.fromCurrency = payload.fromCurrency
       this.toCurrency = payload.toCurrency
@@ -64,17 +66,23 @@ export const useCurrencyStore = defineStore('currency', {
           toCurrency: this.toCurrency,
           rates: this.rates,
         })
+        const exchangeRate = calculateExchangeRate({
+          fromCurrency: this.fromCurrency,
+          toCurrency: this.toCurrency,
+          rates: this.rates,
+        })
 
         this.result = {
           id: crypto.randomUUID(),
           amount: this.amount,
           convertedAmount,
+          exchangeRate,
           fromCurrency: this.fromCurrency,
           toCurrency: this.toCurrency,
           createdAt: new Date().toISOString(),
         }
 
-        this.history = [this.result, ...this.history].slice(0, 5)
+        this.history = [this.result, ...this.history].slice(0, 4)
       } catch (error) {
         this.errorMessage = error.message
       }
